@@ -26,6 +26,7 @@
 	<style>
 		* { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 		html, body { min-height: 100vh; }
+		a { color: inherit; text-decoration: none; }
 		::selection { background: #444444; }
 
 		body {
@@ -34,7 +35,7 @@
 			flex-direction: column;
 
 			background: white;
-			color: white;
+			color: #444;
 
 			font-family: Arial;
 			line-height: 1;
@@ -42,50 +43,36 @@
 			-webkit-font-smoothing: antialiased;
 		}
 
-		a {
-			color: inherit;
-			text-decoration: none;
-		}
 
 		h1, h2 {
-			font-family: 2vw;
-			text-transform: uppercase;
 			font-size: 5vw;
+			letter-spacing: 0.025em;
+			text-transform: uppercase;
 
+
+			min-height: 350px;
 			height: 45vh;
-			background: #004b6a;
+			background: #262262;
+			color: white;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 		}
 
 		h2 {
-			background: #cf1b41;
-		}
-
-		span {
-			position: fixed;
-			top: calc(50% - 5vh);
-			width: 100%;
-			transform: translateY(-50%);
-			left: 0;
-			font-size: 5vmax;
-			line-height: 0.6em;
-		}
-
-		h3 {
-			font-size: 6.5vmax;
-			font-weight: 400;
-			margin: 0.25em 0;
+			background: #e62235;
 		}
 
 		.share svg {
+			min-width: 44px;
 			width: 3vh;
+			min-height: 44px;
 			height: 3vh;
 			fill: #6D6E71;
 		}
 
 		footer {
+			min-height: 100px;
 			height: 10vh;
 			display: flex;
 			align-items: center;
@@ -99,8 +86,6 @@
 
 	<h1>America is currently</h1>
 	<h2>Not great</h2>
-	<span>🔥<br>😞</span>
-	<span></span>
 
 	<footer>
 		<div class="share">
