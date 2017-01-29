@@ -18,9 +18,9 @@
 	<meta property="og:title" content="The Great Status Update" />
 	<meta property="og:description" content="Is American Great Again?" />
 
-	<link rel="icon" type="image/png" href="http://greatstatusupdate.com/icons/16x16.png" sizes="16x16">
-	<link rel="icon" type="image/png" href="http://greatstatusupdate.com/icons/32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="http://greatstatusupdate.com/icons/64x64.png" sizes="64x64">
+	<link rel="icon" type="image/png" href="http://greatstatusupdate.com/icon@16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="http://greatstatusupdate.com/icon@32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="http://greatstatusupdate.com/icon@64.png" sizes="64x64">
 
 
 	<style>
@@ -38,7 +38,7 @@
 			background: #eee;
 			color: #444;
 
-			font-size: 5.5vw;
+			font-size: 10vw;
 			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 			line-height: 1;
 			text-align: center;
@@ -46,6 +46,12 @@
 			font-weight: bold;
 			-webkit-font-smoothing: antialiased;
 		}
+
+			@media(min-width: 600px) {
+				body {
+					font-size: 5.5vw;
+				}
+			}
 
 		h1, h2, button { font-size: inherit; font-weight: inherit; line-height: inherit; text-transform: inherit; color: inherit; -webkit-font-smoothing: inherit; }
 
@@ -74,7 +80,7 @@
 
 		button {
 			font-size: inherit;
-			margin: 2vw 0 0;
+			margin: 20px 0 0;
 			padding: 0 0 0.05em;
 			border: none;
 			border-top: 3px solid currentColor;
@@ -82,8 +88,14 @@
 
 			background: none;
 			color: #262262;
-			font-size: 0.6em;
 		}
+
+			@media(min-width: 600px) {
+				button {
+					margin-top: 2vw;
+					font-size: 0.6em;
+				}
+			}
 
 		.checking {
 			position: relative;
@@ -146,6 +158,10 @@
 				transition: opacity 1000ms 3000ms ease-in-out;
 			}
 
+
+		.share a {
+			display: inline-block;
+		}
 
 		.share svg {
 			min-width: 44px;
