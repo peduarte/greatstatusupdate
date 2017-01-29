@@ -24,148 +24,212 @@
 
 
 	<style>
+		/*
+		red		#e62235
+		blue	#262262
+		 */
+
 		* { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
 		html, body { min-height: 100vh; }
 		a { color: inherit; text-decoration: none; }
 		/*::selection { background: #444444; }*/
 
 		body {
-			display: flex;
-			justify-content: flex-start;
-			flex-direction: column;
-
-			background: white;
+			background: #eee;
 			color: #444;
 
-			font-family: Arial;
+			font-size: 5.5vw;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 			line-height: 1;
 			text-align: center;
+			text-transform: uppercase;
+			font-weight: bold;
 			-webkit-font-smoothing: antialiased;
 		}
 
-		.content {
-			min-height: 350px;
-			height: 45vh;
-			background: #262262;
-			color: white;
+		h1, h2, button { font-size: inherit; font-weight: inherit; line-height: inherit; text-transform: inherit; color: inherit; -webkit-font-smoothing: inherit; }
+
+		.centered {
 			display: flex;
-			flex-direction: column;
+			align-items: center;
 			justify-content: center;
+			flex-direction: column;
+			min-height: 100vh;
+			padding: 10%;
+		}
+
+		.checking,
+		.answer {
+			display: none;
+		}
+
+		h1,
+		button {
+
+		}
+
+		.question h1 {
+			color: #e62235;
+		}
+
+		button {
+			font-size: inherit;
+			margin: 2vw 0 0;
+			padding: 0 0 0.05em;
+			border: none;
+			border-top: 3px solid currentColor;
+			border-bottom: 3px solid currentColor;
+
+			background: none;
+			color: #262262;
+			font-size: 0.6em;
+		}
+
+		.checking {
 			position: relative;
+			min-height: 100vh;
+		}
+
+		.check {
+			opacity: 0;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
 		.answer {
-			background: #e62235;
-			font-size: 3vmax;
-			font-weight: bold;
-			text-transform: uppercase;
-		}
-			.js .answer {
-				background-color: white;
-			}
-
-			.js .answer.is-ended {
-				background-color: #e62235;
-			}
-
-		.check {
-			color: #444;
-		}
-			.js .is-ended .check {
-				display: none;
-			}
-
-
-		@keyframes check {
-			0 { opacity: 1; }
-			80% { opacity: 1; transform: translate3d(0, 0, 0)}
-			100% {
-				transform: translate3d(0, -20px, 0);
-				opacity: 0;
-			}
+			padding: 0;
 		}
 
-		h1, h2 {
-			font-size: 5vw;
-			letter-spacing: 0.025em;
-			text-transform: uppercase;
+		.answer.is-visible {
+			display: flex;
 		}
-			.js h2 {
-				display: none;
-			}
 
-			.js .is-ended h2 {
-				display: block;
-			}
-
-		button {
-			font-family: inherit;
-			font-size: 3vmax;
-			font-weight: bold;
-			text-transform: uppercase;
-			align-self: center;
-
+		.content {
+			height: 50vh;
+			width: 100%;
 			color: white;
-			background: #e62235;
-			padding: 20px 40px;
-
-			border: none;
-			outline: none;
-
-			display: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			position: relative;
+			background-repeat: no-repeat;
 		}
-			.js button {
-				display: block;
+			.content.-red {
+				background-image: linear-gradient(to top, #e62235 0%, #e62235 100%);
+				background-position: 0 50vh;
 			}
 
-			.answer.is-checking button {
-				opacity: 0;
-				position: absolute;
+			.content.-blue {
+				background-image: linear-gradient(to top, #262262 0%, #262262 100%);
+				background-position: 0 -50vh;
 			}
+
+			.is-ready .content {
+				background-position: 0 0;
+				transition: background-position 1000ms ease-in-out;
+			}
+
+		.content h2 {
+			opacity: 0;
+		}
+			.is-ready .-red h2 {
+				opacity: 1;
+				transition: opacity 1000ms 1500ms ease-in-out;
+			}
+			.is-ready .-blue h2 {
+				opacity: 1;
+				transition: opacity 1000ms 3000ms ease-in-out;
+			}
+
 
 		.share svg {
 			min-width: 44px;
 			width: 3vh;
 			min-height: 44px;
 			height: 3vh;
-			fill: #6D6E71;
+			fill: white;
+			opacity: 0;
 		}
 
+			.is-ready .share svg {
+				opacity: 1;
+				transition: opacity 1000ms 4500ms ease-in-out;
+			}
+
 		footer {
-			min-height: 100px;
-			height: 10vh;
-			display: flex;
-			align-items: center;
-			padding: 0 3%;
-			background: #e5e5e5;
+			position: absolute;
+			bottom: 20px;
+			right: 20px;
+		}
+
+		/* Animations */
+		@keyframes hide {
+			100% { opacity: 0; }
+		}
+		@keyframes show {
+			0% { opacity: 0; }
+			100% { opacity: 1; }
+		}
+
+		@keyframes hideCheck {
+			100% {
+				opacity: 0;
+				transform: translate3d(0, -20px, 0);
+			}
+		}
+		@keyframes showCheck {
+			0% {
+				opacity: 0;
+				transform: translate3d(0, 20px, 0);
+			}
+			100% { opacity: 1; }
 		}
 	</style>
 </head>
 
 <body>
-	<div class="content">
-		<h1>Is America great again yet?</h1>
-	</div>
-
-	<div class="content answer">
+	<div class="question centered">
+		<h1>Is America<br>Great Again?</h1>
 		<button type="button">Check now</button>
-		<div class="check"></div>
-		<h2>Not great</h2>
 	</div>
 
-	<footer>
-		<div class="share">
-			<a id="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://greatstatusupdate.com&title=The Great Status Update" target="_blank">
-				<svg viewBox="0 0 512 512"><path d="M211.9 197.4h-36.7v59.9h36.7V433.1h70.5V256.5h49.2l5.2-59.1h-54.4c0 0 0-22.1 0-33.7 0-13.9 2.8-19.5 16.3-19.5 10.9 0 38.2 0 38.2 0V82.9c0 0-40.2 0-48.8 0 -52.5 0-76.1 23.1-76.1 67.3C211.9 188.8 211.9 197.4 211.9 197.4z"/></svg>
-			</a>
-			<a id="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgreatstatusupdate.com&text=The Great Status Update" target="_blank" >
-				<svg viewBox="0 0 512 512"><path d="M419.6 168.6c-11.7 5.2-24.2 8.7-37.4 10.2 13.4-8.1 23.8-20.8 28.6-36 -12.6 7.5-26.5 12.9-41.3 15.8 -11.9-12.6-28.8-20.6-47.5-20.6 -42 0-72.9 39.2-63.4 79.9 -54.1-2.7-102.1-28.6-134.2-68 -17 29.2-8.8 67.5 20.1 86.9 -10.7-0.3-20.7-3.3-29.5-8.1 -0.7 30.2 20.9 58.4 52.2 64.6 -9.2 2.5-19.2 3.1-29.4 1.1 8.3 25.9 32.3 44.7 60.8 45.2 -27.4 21.4-61.8 31-96.4 27 28.8 18.5 63 29.2 99.8 29.2 120.8 0 189.1-102.1 185-193.6C399.9 193.1 410.9 181.7 419.6 168.6z"/></svg>
-			</a>
+	<div class="checking">
+		<div class="check">Checking for Muslims</div>
+		<div class="check">Checking for walls</div>
+		<div class="check">Checking for Mexicans</div>
+		<div class="check">Checking for gays</div>
+	</div>
+
+	<div class="answer centered">
+		<div class="content -red">
+			<h2>America is currently</h2>
 		</div>
-	</footer>
+
+		<div class="content -blue">
+			<h2>Not great</h2>
+		</div>
+
+		<footer>
+			<div class="share">
+				<a id="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://greatstatusupdate.com&title=The Great Status Update" target="_blank">
+					<svg viewBox="0 0 512 512"><path d="M211.9 197.4h-36.7v59.9h36.7V433.1h70.5V256.5h49.2l5.2-59.1h-54.4c0 0 0-22.1 0-33.7 0-13.9 2.8-19.5 16.3-19.5 10.9 0 38.2 0 38.2 0V82.9c0 0-40.2 0-48.8 0 -52.5 0-76.1 23.1-76.1 67.3C211.9 188.8 211.9 197.4 211.9 197.4z"/></svg>
+				</a>
+				<a id="twitter" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fgreatstatusupdate.com&text=The Great Status Update" target="_blank" >
+					<svg viewBox="0 0 512 512"><path d="M419.6 168.6c-11.7 5.2-24.2 8.7-37.4 10.2 13.4-8.1 23.8-20.8 28.6-36 -12.6 7.5-26.5 12.9-41.3 15.8 -11.9-12.6-28.8-20.6-47.5-20.6 -42 0-72.9 39.2-63.4 79.9 -54.1-2.7-102.1-28.6-134.2-68 -17 29.2-8.8 67.5 20.1 86.9 -10.7-0.3-20.7-3.3-29.5-8.1 -0.7 30.2 20.9 58.4 52.2 64.6 -9.2 2.5-19.2 3.1-29.4 1.1 8.3 25.9 32.3 44.7 60.8 45.2 -27.4 21.4-61.8 31-96.4 27 28.8 18.5 63 29.2 99.8 29.2 120.8 0 189.1-102.1 185-193.6C399.9 193.1 410.9 181.7 419.6 168.6z"/></svg>
+				</a>
+			</div>
+		</footer>
+	</div>
 
 
 	<script>
+		document.documentElement.className = 'js';
+
 		function addClass(element, className) {
 			if (!element) { return; }
 			element.className = (element.className + ' ' + className).trim();
@@ -176,48 +240,87 @@
 			element.className = element.className.replace(className, '').trim();
 		}
 
-		document.documentElement.className = 'js';
-		var WAIT = 2000;
-		var check = document.querySelector('.check');
-		var checks = [
-			'Checking for Mexicans',
-			'Checking for walls',
-			'Checking for gays',
-			'Checking for Muslims',
-		];
-		var content = document.querySelector('.answer');
+		var questionContent = document.querySelector('.question');
+		var questionButton = questionContent.querySelector('button');
 
-		function checksEnded() {
-			addClass(content, 'is-ended');
+		function hideCheck(element, duration) {
+			element.style.opacity = '1';
+			element.style.animation = 'hideCheck ' + duration + ' ease-in-out forwards';
 		}
 
-		function onButtonClick() {
-			addClass(content, 'is-checking');
+		function showCheck(element, duration) {
+			element.style.animation = 'showCheck ' + duration + ' ' + duration + ' ease-in-out forwards';
+		}
+
+		function showAnswer() {
+			var answerContent = document.querySelector('.answer');
+			addClass(answerContent, 'is-visible');
+			setTimeout(function() {
+				addClass(answerContent, 'is-ready');
+			}, 500);
+		}
+
+		function hideChecking(element, duration) {
+			setTimeout(function() {
+				element.style.display = 'none';
+				showAnswer();
+			}, 1000);
+		}
+
+		function startChecking() {
+			var duration = 1000;
+			var animDuration = duration + 'ms';
+
+			// Show Checking div
+			var checkingContent = document.querySelector('.checking');
+			checkingContent.style.display = 'flex';
+
+			var WAIT = 3000;
+			var checks = document.querySelectorAll('.check');
 
 			var i = 0;
 			var total = checks.length;
 
-			check.innerHTML = checks[i];
+			showCheck(checks[i], animDuration);
+
 			var interval = setInterval(function() {
+				hideCheck(checks[i], animDuration);
+
 				if (i >= total - 1) {
 					clearInterval(interval);
-					checksEnded();
+					hideChecking(checkingContent, duration);
 					return;
 				}
+
 				i++;
-				check.innerHTML = checks[i];
+				showCheck(checks[i], animDuration);
 			}, WAIT);
 		}
 
-		var button = document.querySelector('button');
-		button.addEventListener('click', onButtonClick);
+		function hideQuestion(element, callback) {
+			var duration = 600;
+			var animDuration = duration + 'ms';
 
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-28314827-4', 'auto');
-		ga('send', 'pageview');
+			element.style.animation = 'hide ' + animDuration + ' ease-in-out forwards';
+
+			setTimeout(function() {
+				element.style.display = 'none';
+				callback();
+			}, duration);
+		}
+
+		function onButtonClick() {
+			hideQuestion(questionContent, startChecking)
+		}
+
+		questionButton.addEventListener('click', onButtonClick);
+		//
+		// (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		// (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		// m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		// })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		// ga('create', 'UA-28314827-4', 'auto');
+		// ga('send', 'pageview');
 	</script>
 </body>
 </html>
