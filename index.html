@@ -86,13 +86,15 @@
 			color: #e62235;
 		}
 
+		.check {
+
+		}
+
 		button {
 			font-size: inherit;
 			margin: 20px 0 0;
-			padding: 0 0 0.05em;
-			border: none;
-			border-top: 3px solid currentColor;
-			border-bottom: 3px solid currentColor;
+			padding: 0.3em 0.5em;
+			border: 3px solid currentColor;
 
 			background: none;
 			color: #262262;
@@ -118,6 +120,11 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			/*color: #399fd3;*/
+		}
+
+		.check span {
+			color: #999;
 		}
 
 		.answer {
@@ -143,14 +150,14 @@
 				background-image: linear-gradient(to top, #e62235 0%, #e62235 100%);
 			}
 			.js .content.-red {
-				background-position: 0 50vh;
+				background-position: 0 -50vh;
 			}
 
 			.content.-blue {
 				background-image: linear-gradient(to top, #262262 0%, #262262 100%);
 			}
 			.js .content.-blue {
-				background-position: 0 -50vh;
+				background-position: 0 50vh;
 			}
 
 			.js .is-ready .content {
@@ -163,11 +170,11 @@
 		}
 			.is-ready .-red h2 {
 				opacity: 1;
-				transition: opacity 600ms 1500ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+				transition: opacity 600ms 3000ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 			.is-ready .-blue h2 {
 				opacity: 1;
-				transition: opacity 600ms 3000ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+				transition: opacity 600ms 1500ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 
 
@@ -227,18 +234,19 @@
 	</div>
 
 	<div class="checking">
-		<div class="check">Checking for Muslims</div>
-		<div class="check">Checking for walls</div>
-		<div class="check">Checking for Mexicans</div>
-		<div class="check">Checking for gays</div>
+		<div class="check"><span>Checking for</span>&nbsp;Muslims...</div>
+		<div class="check"><span>Checking for</span>&nbsp;walls...</div>
+		<div class="check"><span>Checking for</span>&nbsp;Mexicans...</div>
+		<div class="check"><span>Checking for</span>&nbsp;gays...</div>
+		<div class="check"><span>Checking for</span>&nbsp;Putin...</div>
 	</div>
 
 	<div class="answer centered">
-		<div class="content -red">
+		<div class="content -blue">
 			<h2>America is currently</h2>
 		</div>
 
-		<div class="content -blue">
+		<div class="content -red">
 			<h2>Not great</h2>
 		</div>
 
