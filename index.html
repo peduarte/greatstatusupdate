@@ -155,7 +155,7 @@
 
 			.js .is-ready .content {
 				background-position: 0 0;
-				transition: background-position 1000ms ease-in-out;
+				transition: background-position 1000ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 
 		.js .content h2 {
@@ -163,11 +163,11 @@
 		}
 			.is-ready .-red h2 {
 				opacity: 1;
-				transition: opacity 1000ms 1500ms ease-in-out;
+				transition: opacity 600ms 1500ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 			.is-ready .-blue h2 {
 				opacity: 1;
-				transition: opacity 1000ms 3000ms ease-in-out;
+				transition: opacity 600ms 3000ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 
 
@@ -186,7 +186,7 @@
 
 			.is-ready .share svg {
 				opacity: 1;
-				transition: opacity 1000ms 4500ms ease-in-out;
+				transition: opacity 600ms 4500ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 
 		footer {
@@ -268,14 +268,15 @@
 
 		var questionContent = document.querySelector('.question');
 		var questionButton = questionContent.querySelector('button');
+		var easing = 'cubic-bezier(0.390, 0.575, 0.565, 1.000)';
 
 		function hideCheck(element, duration) {
 			element.style.opacity = '1';
-			element.style.animation = 'hideCheck ' + duration + ' ease-in-out forwards';
+			element.style.animation = 'hideCheck ' + duration + ' ' + easing + ' forwards';
 		}
 
 		function showCheck(element, duration) {
-			element.style.animation = 'showCheck ' + duration + ' ' + duration + ' ease-in-out forwards';
+			element.style.animation = 'showCheck ' + duration + ' ' + duration + ' ' + easing + ' forwards';
 		}
 
 		function showAnswer() {
@@ -290,11 +291,11 @@
 			setTimeout(function() {
 				element.style.display = 'none';
 				showAnswer();
-			}, 1000);
+			}, duration);
 		}
 
 		function startChecking() {
-			var duration = 1000;
+			var duration = 600;
 			var animDuration = duration + 'ms';
 
 			// Show Checking div
@@ -327,7 +328,7 @@
 			var duration = 600;
 			var animDuration = duration + 'ms';
 
-			element.style.animation = 'hide ' + animDuration + ' ease-in-out forwards';
+			element.style.animation = 'hide ' + animDuration + ' ' + easing + ' forwards';
 
 			setTimeout(function() {
 				element.style.display = 'none';
