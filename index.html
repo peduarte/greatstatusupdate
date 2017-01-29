@@ -1,6 +1,7 @@
 <!doctype html>
-<html>
+<html class="no-js">
 <head>
+	<script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>The Great Status Update</title>
@@ -55,6 +56,16 @@
 
 		h1, h2, button { font-size: inherit; font-weight: inherit; line-height: inherit; text-transform: inherit; color: inherit; -webkit-font-smoothing: inherit; }
 
+		/* No JS Support */
+		.no-js .question,
+		.no-js .checking {
+			display: none !important;
+		}
+
+		.no-js .answer {
+			display: flex !important;
+		}
+
 		.centered {
 			display: flex;
 			align-items: center;
@@ -69,10 +80,6 @@
 			display: none;
 		}
 
-		h1,
-		button {
-
-		}
 
 		.question h1 {
 			color: #e62235;
@@ -133,20 +140,24 @@
 		}
 			.content.-red {
 				background-image: linear-gradient(to top, #e62235 0%, #e62235 100%);
+			}
+			.js .content.-red {
 				background-position: 0 50vh;
 			}
 
 			.content.-blue {
 				background-image: linear-gradient(to top, #262262 0%, #262262 100%);
+			}
+			.js .content.-blue {
 				background-position: 0 -50vh;
 			}
 
-			.is-ready .content {
+			.js .is-ready .content {
 				background-position: 0 0;
 				transition: background-position 1000ms ease-in-out;
 			}
 
-		.content h2 {
+		.js .content h2 {
 			opacity: 0;
 		}
 			.is-ready .-red h2 {
@@ -244,8 +255,6 @@
 
 
 	<script>
-		document.documentElement.className = 'js';
-
 		function addClass(element, className) {
 			if (!element) { return; }
 			element.className = (element.className + ' ' + className).trim();
