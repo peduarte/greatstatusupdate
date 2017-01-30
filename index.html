@@ -147,12 +147,6 @@
 			position: relative;
 			background-repeat: no-repeat;
 		}
-			.content.-red {
-				background-image: linear-gradient(to top, #e62235 0%, #e62235 100%);
-			}
-			.js .content.-red {
-				background-position: 0 -50vh;
-			}
 
 			.content.-blue {
 				background-image: linear-gradient(to top, #262262 0%, #262262 100%);
@@ -161,21 +155,28 @@
 				background-position: 0 50vh;
 			}
 
+			.content.-red {
+				background-image: linear-gradient(to top, #e62235 0%, #e62235 100%);
+			}
+			.js .content.-red {
+				background-position: 0 -50vh;
+			}
+
 			.js .is-ready .content {
 				background-position: 0 0;
-				transition: background-position 1000ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+				transition: background-position 600ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 
 		.js .content h2 {
 			opacity: 0;
 		}
-			.is-ready .-red h2 {
-				opacity: 1;
-				transition: opacity 600ms 3000ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
-			}
 			.is-ready .-blue h2 {
 				opacity: 1;
-				transition: opacity 600ms 1500ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+				transition: opacity 600ms 1200ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+			}
+			.is-ready .-red h2 {
+				opacity: 1;
+				transition: opacity 600ms 1800ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 
 
@@ -194,7 +195,7 @@
 
 			.is-ready .share svg {
 				opacity: 1;
-				transition: opacity 600ms 4500ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+				transition: opacity 600ms 3400ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 
 		footer {
@@ -215,7 +216,7 @@
 		}
 			.is-ready form {
 				opacity: 1;
-				transition: opacity 600ms 4500ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
+				transition: opacity 600ms 3400ms cubic-bezier(0.390, 0.575, 0.565, 1.000);
 			}
 
 		form input {
@@ -277,6 +278,7 @@
 		<div class="check"><span>Checking for</span>&nbsp;Mexicans...</div>
 		<div class="check"><span>Checking for</span>&nbsp;gays...</div>
 		<div class="check"><span>Checking for</span>&nbsp;Putin...</div>
+		<div class="check"><span>Checking for</span>&nbsp;abortions...</div>
 	</div>
 
 	<div class="answer centered">
@@ -355,7 +357,7 @@
 			var checkingContent = document.querySelector('.checking');
 			checkingContent.style.display = 'flex';
 
-			var WAIT = 3000;
+			var WAIT = 2000;
 			var checks = document.querySelectorAll('.check');
 
 			var i = 0;
